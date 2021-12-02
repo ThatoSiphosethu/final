@@ -1,4 +1,4 @@
-import CartItem from "./CartItem";
+import CartItem from "../models/CartItems";
 
 export default function Cart(){
     let arr = [];

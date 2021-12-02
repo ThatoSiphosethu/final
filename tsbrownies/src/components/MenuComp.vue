@@ -1,6 +1,13 @@
 <template>
   <div>
     <menu-item :item="item" v-for="item in cookies" :key="item.id"></menu-item>
+    <!-- <menu-item 
+      v-for="product in products"
+      :key="product.id"
+      :id="product.id"
+      :name="product.name"
+      :image="product.image"
+      :price="product.price"></menu-item> -->
     <drinks/>
   </div>
 </template>
@@ -18,6 +25,11 @@ export default {
     return {
       cookies: [],
       drink:[],
+    }
+  },
+  computed: {
+    prooducts() {
+      return this.$store.getters.products;
     }
   },
 

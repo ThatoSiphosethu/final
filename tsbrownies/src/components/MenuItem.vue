@@ -43,7 +43,7 @@
                     <v-list-item three-line class="text-center">
                       <v-list-item-content>
                         <div align="center" justify="center">
-                          <v-img src="photo9.jpg" max-height="110" max-width="110" contain></v-img>
+                          <v-img src="photo9.jpg" max-height="110" max-width="110" contain ></v-img>
                         </div>
                         <v-list-item-subtitle :class="active ? 'brown--text' : 'black--text'" class="caption mt-4">
                           Brownies
@@ -101,58 +101,34 @@
               <v-list-item-title class="text-h5">{{item.Name}}</v-list-item-title>
               <v-list-item-subtitle class="mt-1">{{item.Flavor}}</v-list-item-subtitle>
               <strong class="mt-3">{{item.Price}}</strong>
-              <v-btn class="btn" v-on:click="addToCart(item)">Add</v-btn>
+              <v-btn class="btn" v-on:click="addToCart(id)">Add</v-btn>
             </v-list-item-content>
           </v-list-item>
           <v-card-actions>
             <v-row>
               <v-col cols="12" sm="6" class="mt-1">
                 <strong class="ml-3">Topping</strong><br>
-                <v-item-group mandatory class="mt-n1">
+                <v-btn-group mandatory class="mt-n1" v-model="buttons">
                   <v-row>
                     <v-col cols="12" md="4">
-                      <v-item v-slot="{active, toggle}">
-                        <v-card color="#F6EFEF"
-                                :class="active ? 'borderme' : ''" class="d-flex align-center rounded-circle"
-                                dark height="50" width="50" @click="toggle" flat>
-                          <v-list-item class="text-center">
-                            <v-list-item-content>
+                      <v-btn fab small>
                               <v-icon dark color="orange">fas fa-ice-cream</v-icon>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-card>
-                      </v-item>
+                      </v-btn>
                     </v-col>
-
+                    
                     <v-col cols="12" md="4">
-                      <v-item v-slot="{active, toggle}">
-                        <v-card color="#F6EFEF"
-                                :class="active ? 'borderme' : ''" class="d-flex align-center rounded-circle"
-                                dark height="50" width="50" @click="toggle" flat>
-                          <v-list-item class="text-center">
-                            <v-list-item-content>
+                      <v-btn fab small>
                               <v-icon dark color="orange">fas fa-candy-cane</v-icon>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-card>
-                      </v-item>
+                      </v-btn>
                     </v-col>
 
                     <v-col cols="12" md="4">
-                      <v-item v-slot="{active, toggle}">
-                        <v-card color="#F6EFEF"
-                                :class="active ? 'borderme' : ''" class="d-flex align-center rounded-circle"
-                                dark height="50" width="50" @click="toggle" flat>
-                          <v-list-item class="text-center">
-                            <v-list-item-content>
+                      <v-btn fab small>
                               <v-icon dark color="orange">fas fa-grin-hearts</v-icon>
-                            </v-list-item-content>
-                          </v-list-item>
-                        </v-card>
-                      </v-item>
+                      </v-btn>
                     </v-col>
                   </v-row>
-                </v-item-group>
+                </v-btn-group>
               </v-col>
               <v-col cols="12" sm="6" class="mt-1">
               </v-col>
@@ -161,41 +137,30 @@
               <strong class="ml-2">Box Size</strong>
               <v-item-group mandatory class="mt-n1">
                 <v-container>
+
                   <v-row>
                     <v-col cols="12" sm="4">
-                      <v-item v-slot="{active, toggle}">
-                        <v-card color="#f6efef" :class="active ? 'borderme' : ''"
-                                class="d-flex align-center rounded-circle"
-                                height="50" width="50" @click="toggle" flat>
-                          <v-list-item class="text-center">
-                            <strong class="font-weight-black">6</strong>
-                          </v-list-item>
-                        </v-card>
-                      </v-item>
+                      <v-col cols="12" md="4">
+                      <v-btn fab small>
+                        <strong class="font-weight-black">6</strong>
+                      </v-btn>
+                    </v-col>
                     </v-col>
 
                     <v-col cols="12" sm="4">
-                      <v-item v-slot="{active, toggle}">
-                        <v-card color="#f6efef" :class="active ? 'borderme' : ''"
-                                class="d-flex align-center rounded-circle"
-                                height="50" width="50" @click="toggle" flat>
-                          <v-list-item class="text-center">
-                            <strong class="font-weight-black">9</strong>
-                          </v-list-item>
-                        </v-card>
-                      </v-item>
+                      <v-col cols="12" md="4">
+                      <v-btn fab small>
+                        <strong class="font-weight-black">9</strong>
+                      </v-btn>
+                    </v-col>
                     </v-col>
 
                     <v-col cols="12" sm="4">
-                      <v-item v-slot="{active, toggle}">
-                        <v-card color="#f6efef" :class="active ? 'borderme' : ''"
-                                class="d-flex align-center rounded-circle"
-                                height="50" width="50" @click="toggle" flat>
-                          <v-list-item class="text-center">
-                            <strong class="font-weight-black">12</strong>
-                          </v-list-item>
-                        </v-card>
-                      </v-item>
+                      <v-col cols="12" md="4">
+                      <v-btn fab small>
+                        <strong class="font-weight-black">12</strong>
+                      </v-btn>
+                    </v-col>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -213,26 +178,31 @@
 export  default {
   name: 'MenuItem',
 
-  props: {
+    props:{
     item: {
       type: Object,
     }
-  },
-  methods: {
-    add() {
-
     },
-    // // select(item, value = true, emit = true) {
-    // },
+    data() {
+      return { 
+        buttons: undefined
+      }
+    }
+    
+  ,
+  methods: {
+   addToCart(id) {
+      this.$store.dispatch("addToCart", id);
+    }
 
   },
-  filters: {
-    item: function (value) {
-      if (!value) return '';
-      value = value.item();
-      return value.charAt(0).toString() + value.splice(1);
-    }
-  },
+  // filters: {
+  //   item: function (value) {
+  //     if (!value) return '';
+  //     value = value.item();
+  //     return value.charAt(0).toString() + value.splice(1);
+  //   }
+  // },
 }
 </script>
 

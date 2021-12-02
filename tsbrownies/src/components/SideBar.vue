@@ -29,14 +29,15 @@
       <v-icon>fas fa-sign-out-alt</v-icon>
       <br>
 <!--        <span class="caption">Logout</span>-->
-        <v-btn class="logout" @click="Logout">Signin</v-btn>
+        <v-btn class="logout" @click="logout" v-if="authUser.uid">LogOut </v-btn>
+        <v-btn class="login"  v-else>SignIn </v-btn>
       </router-link>
     </div>
   </v-navigation-drawer>
 </template>
 
 <script>
-// import firebase from "firebase";
+import { auth } from '../firebase/firebase'
 export default {
   data: () => ({
     selectedItem: 0,
@@ -50,16 +51,20 @@ export default {
       // {icon: 'fas fa-cog', text: 'Settings', path: "/account"},
       {icon: 'fas fa-user', text: 'User', path: "/users"},
     ],
-    // const Logout = () => {
-    //   firebase.auth()
-    //           .signOut()
-    //           .then()
-    //           .catch(err => alert(err.message));
-    // }
-    // return {
-    //   Logout
-    // }
-  })
+    }),
+    methods: {
+     logout() {
+       auth
+              .signOut()
+              .then()
+              .catch(err => alert(err.message));
+     }  
+    },
+    props: {
+      authUser: Object
+    }
+   
+  
 }
 </script>
 

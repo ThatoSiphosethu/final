@@ -3,52 +3,41 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-function updateLocalStorage(cart) {
-    localStorage.setItem('cart', JSON.stringify(cart))
-}
 
 export default new Vuex.Store ({
     state: {
-        cart: []
+        products : [
+            {
+                id : 1,
+                name : '',
+                price : '',
+                image : '',
+                
+            }
+        ],
+        StoreCart: [],
     },
     getters: {
-        cartQty: state => {
-            return state.cart.length
-        },
-        cartItems: state => {
-            return state.cart
-        },
-        cartTotal: state => {
-            return state.cart.reduce((a, b) => a + (b.price * b.quantity), 0)
+        products: (state) => state.products,
+        StoreCart: (state) => state.StoreCart,
+    },
+
+    mutations: {
+       ADD_Item(state, id) {
+        state.StoreCart.push(id);
+       },
+       REMOVE_Item(state, index) {
+        state.StoreCart.splice(index, 1);
         },
     },
-    mutations: {
-        addToCart (state, product) {
-            let item = state.cart.find(i => i.id === product.id)
-
-            if(item) {
-                item.quantity++
-            } else {
-                state.cart.push({...product, quantity: 1})
-            }
-            updateLocalStorage(state.cart)
+    actions: {
+        addItem(context, id) {
+          context.commit("ADD_Item", id);
         },
-        removeFromCart(state, product) {
-            let item = state.cart.find(i => i.id === product.id)
-
-            if (item) {
-                if (item.quantity > 1) {
-                    item.quantity--
-                } else {
-                    state.cart = state.cart.filter(i => i.id !== product.id)
-                }
-            }
-            updateLocalStorage(state.cart)
+    
+        removeItem(context, index) {
+          context.commit("REMOVE_Item", index);
         },
-        updateCartFromLocalStorage (state) {
-
-            return state.cart
-
-        }
-    }
-})
+    },
+    modules: {}
+});

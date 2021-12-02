@@ -2,7 +2,7 @@
   <div id="app">
 
       <v-app :style="{background: $vuetify.theme.themes.dark.background}">
-        <SideBar/>
+        <SideBar :auth-user="authUser"/>
         <v-container>
           <v-main>
           <router-view :auth-user="authUser"/>
@@ -17,35 +17,45 @@
 </template>
 
 <script>
-import {onBeforeMount} from 'vue'
-import {useRouter, useRoute} from 'vue-router';
-import firebase from "firebase";
+
+// import {useRouter} from 'vue-router';
+// import firebase from "firebase";
 import SideBar from "./components/SideBar";
 import SideBarRight from './components/SideBarRight.vue';
+import Cart from "./models/Cart"
+import { auth } from './firebase/firebase'
 
 
 export default {
   name: 'App',
-  setup () {
-    const router = useRouter();
-    const route = useRoute();
-
-    onBeforeMount(() => {
-      firebase.auth.onAuthStateChanged((user) => {
+  
+   mounted() {
+      // const router = useRouter();
+    
+      auth.onAuthStateChanged((user) => {
         if (!user) {
-          router.replace('/LogIn');
+          this.authUser = {}
+          // router.replace('/LogIn');
         }
-        else if (route.path == "/LogIn" || route.path == "/SignUp") {
-          router.replace('/')
+        else  {
+          
+          this.authUser = user
+          // router.replace('/')
+
         }
       })
-    })
-  },
+    },
   data(){
     return {
       authUser : {},
+      cart: new Cart()
     }
   },
+  // firestore() {
+  //   return {
+  //     cart: db.collection("users").doc(this.authUser.uid).collection("cart")
+  //   }
+  // },
   components: {
     SideBar,
     SideBarRight,
