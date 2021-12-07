@@ -5,10 +5,10 @@
         <SideBar :auth-user="authUser"/>
         <v-container>
           <v-main>
-          <router-view :auth-user="authUser"/>
+          <router-view :auth-user="authUser" @add-product="addProduct" :shopping-cart="shoppingCart"/>
     </v-main>
         </v-container>
-        <SideBarRight/>
+        
       </v-app>
 
 
@@ -21,44 +21,46 @@
 // import {useRouter} from 'vue-router';
 // import firebase from "firebase";
 import SideBar from "./components/SideBar";
-import SideBarRight from './components/SideBarRight.vue';
-import Cart from "./models/Cart"
-import { auth } from './firebase/firebase'
+
+
+// import { auth } from './firebase/firebase'
 
 
 export default {
   name: 'App',
-  
-   mounted() {
-      // const router = useRouter();
-    
-      auth.onAuthStateChanged((user) => {
-        if (!user) {
-          this.authUser = {}
-          // router.replace('/LogIn');
-        }
-        else  {
-          
-          this.authUser = user
-          // router.replace('/')
 
-        }
-      })
-    },
   data(){
     return {
       authUser : {},
-      cart: new Cart()
+      
+      shoppingCart: [] // this will contain all the item from the store
     }
   },
-  // firestore() {
-  //   return {
-  //     cart: db.collection("users").doc(this.authUser.uid).collection("cart")
-  //   }
-  // },
+  
+   mounted: function () {
+		if (localStorage.getItem('cartList')) {
+			this.cartList = JSON.parse(localStorage.getItem('cartList'))
+		}
+	},
+	watch: {
+		cartList: {
+			handler(newList) {
+				localStorage.setItem('cartList', JSON.stringify(newList))
+			},
+			deep: true,
+		},
+	},
+
+  methods: {
+    addProduct(item){
+      this.shoppingCart.push(item)
+    }
+  },
+
+
   components: {
     SideBar,
-    SideBarRight,
+   
   },
 
 };

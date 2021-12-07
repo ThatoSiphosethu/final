@@ -1,37 +1,25 @@
 <template>
-  <div class="cart">
-    <h1>Cart Summary</h1>
-
-    <CartItemCard
-      v-for="product in products"
-      :key="product.id"
-     :product="product" />
-
-    <!-- <CartSummaryCard
-    /> -->
-
-
-
+  <div>
+      <cart-item
+			:shoppingCart="shoppingCart"				
+		></cart-item>
   </div>
 </template>
 
 <script>
-
-import CartItemCard from '../components/cart/CartItemCard.vue'
-// import CartSummaryCard from '../components/cart/CartSummaryCard.vue'
+import CartItem from '../components/CartItem.vue'
 
 export default {
-  name: 'Cart',
-  components: {
-    CartItemCard,
-    // CartSummaryCard
-  },
-  computed: {
-    products() {
-      // console.log(this.$store.getters.cartItems)
-    //   return this.$store.getters.cartItems
-    return {}
-    }
-  }
+    name: 'Cart',
+	components: {  CartItem},
+    
+	props: {
+		shoppingCart: Array,
+		addProductMethod: Function,
+	},
 }
 </script>
+
+<style>
+
+</style>

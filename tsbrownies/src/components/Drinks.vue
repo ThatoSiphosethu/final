@@ -2,38 +2,39 @@
   <v-container>
     <v-toolbar color="#EEEEEE" flat>
       <v-toolbar-title>Drinks</v-toolbar-title><v-spacer></v-spacer>
-      <v-span color="grey">Results</v-span>
+      <!-- <v-span color="grey">Results</v-span> -->
     </v-toolbar>
     <v-row>
       <v-col cols="12" sm="6">
         <v-card flat class="rounded-lg mx-5">
           <v-list-item-avatar rounded size="120" color="grey lighten-4">
-<!--            <v-img src=""></v-img>-->
+           <v-img src="img3.jpg"></v-img>
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="text-h5">
-             {{name}}
+             {{item.name}}
             </v-list-item-title>
-            <v-list-item-subtitle class="mt-1">Description</v-list-item-subtitle>
-            <strong class="mt-3">Price</strong>
-            <v-btn class="btn" v-on:click="addToCart(id)">Add</v-btn>
+            <!-- <v-list-item-subtitle class="mt-1">{{item.name}}</v-list-item-subtitle> -->
+            <!-- <strong class="mt-3">{{price}}</strong> -->
+            <strong class="mt-3" >Price: ${{itemPrice}}</strong>
+            <v-btn class="btn" @click="addProduct">Add to cart</v-btn>
           </v-list-item-content>
           <v-card-actions>
             <v-row>
               <v-col cols="12" sm="6" class="mt-1">
-                <strong class="ml-3">Type</strong><br>
+                <strong class="ml-3">{{item.type}}</strong><br>
                 <v-container>
                   <v-row>
 
                     <v-col cols="12" md="4">
                       <v-btn fab small>
-                              <v-icon dark color="red">fas fa-fire</v-icon>
+                        <v-icon dark color="red">fas fa-fire</v-icon>
                       </v-btn>
                     </v-col>
 
                     <v-col cols="12" md="4">
-                      <v-btn fab small>
-                              <v-icon dark color="blue">fab fa-modx</v-icon>
+                      <v-btn fab small @click="cold">
+                        <v-icon dark color="blue">fab fa-modx</v-icon>
                       </v-btn>
                     </v-col>
                   </v-row>
@@ -47,7 +48,7 @@
                     <v-row>
                       <v-col cols="12" sm="4">
                       <v-col cols="12" md="4">
-                      <v-btn fab small>
+                      <v-btn fab small  @click="small">
                         <strong class="font-weight-black">S</strong>
                       </v-btn>
                     </v-col>
@@ -55,7 +56,7 @@
 
                      <v-col cols="12" sm="4">
                       <v-col cols="12" md="4">
-                      <v-btn fab small>
+                      <v-btn fab small @click="medium">
                         <strong class="font-weight-black">M</strong>
                       </v-btn>
                     </v-col>
@@ -63,7 +64,7 @@
 
                       <v-col cols="12" sm="4">
                       <v-col cols="12" md="4">
-                      <v-btn fab small>
+                      <v-btn fab small @click="large">
                         <strong class="font-weight-black">L</strong>
                       </v-btn>
                     </v-col>
@@ -81,13 +82,13 @@
                 <v-container>
                   <v-row>
                     <v-col cols="12" md="4">
-                      <v-btn fab small>
+                      <v-btn fab small @click="extra">
                         <v-icon dark color="red">fas fa-check</v-icon>
                       </v-btn>
                     </v-col>
 
                     <v-col cols="12" md="4">
-                      <v-btn fab small>
+                      <v-btn fab small >
                         <v-icon dark color="black">fas fa-ban</v-icon>
                       </v-btn>
                     </v-col>
@@ -112,7 +113,7 @@
                      
                     <v-col cols="12" sm="4">
                       <v-col cols="12" md="4">
-                      <v-btn fab small>
+                      <v-btn fab small >
                         <strong class="font-weight-black">M</strong>
                       </v-btn>
                     </v-col>
@@ -121,7 +122,7 @@
                     
                     <v-col cols="12" sm="4">
                       <v-col cols="12" md="4">
-                      <v-btn fab small>
+                      <v-btn fab small >
                         <strong class="font-weight-black">L</strong>
                       </v-btn>
                     </v-col>
@@ -139,19 +140,40 @@
 </template>
 
 <script>
-import { db } from '../firebase/firebase'
+
+
 export default {
   name: "Drinks",
+  props:{
+    item: Object,
+  },
   data() {
     return {
-      drinks : []
+      itemPrice: this.price,
+       
     }
   },
-  firestore() {
-    return {
-      drinks: db.collection("coffee").doc("tNA836cUUGolFMjWHHEq")
-    }
-  }
+  methods: {
+    addProduct: function(){
+       this.$emit('add-product', this.item)
+     },
+    small() {
+      this.itemPrice = this.price ;
+    },
+    medium() {
+      this.itemPrice = this.price + 2;
+    },
+    large() {
+      this.itemPrice = this.price + 4;
+    },
+    cold() {
+      this.itemPrice  += 1.50;
+    },
+    extra() {
+      this.itemPrice += 0.5
+    },
+  },
+
  
 }
 </script>

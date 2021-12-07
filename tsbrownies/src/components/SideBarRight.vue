@@ -24,17 +24,17 @@
           <v-img src="favicon.ico"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title class="subtitle-2">Box of 3</v-list-item-title>
+          <v-list-item-title class="subtitle-2">{{item.name}}</v-list-item-title>
           <v-list-item-subtitle>X1
-            <v-btn plain color="#704232" small>Notes
+            <!-- <v-btn plain color="#704232" small>Notes
               <v-icon right>mdi-pencil</v-icon>
-            </v-btn>
+            </v-btn> -->
           </v-list-item-subtitle>
         </v-list-item-content>
-        <v-list-item-action class="caption">$5.99</v-list-item-action>
+        <v-list-item-action class="caption">{{item.price}}</v-list-item-action>
       </v-list-item>
     </v-list>
-    <v-list subheader two-line class="mt-1">
+    <!-- <v-list subheader two-line class="mt-1">
       <v-list-item>
         <v-list-item-avatar rounded color="grey lighten-4">
           <v-img src="favicon.ico"></v-img>
@@ -49,14 +49,14 @@
         </v-list-item-content>
         <v-list-item-action class="caption">$10.99</v-list-item-action>
       </v-list-item>
-    </v-list>
-    <v-list subheader two-line class="mt-1">
+    </v-list> -->
+    <!-- <v-list subheader two-line class="mt-1">
       <v-list-item>
         <v-list-item-avatar rounded color="grey lighten-4">
           <v-img src="favicon.ico"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title class="subtitle-2">Box of 16</v-list-item-title>
+          <v-list-item-title class="subtitle-2">{{item.name}}</v-list-item-title>
           <v-list-item-subtitle>X1
             <v-btn plain color="#704232" small>Notes
               <v-icon right>mdi-pencil</v-icon>
@@ -65,12 +65,12 @@
         </v-list-item-content>
         <v-list-item-action class="caption">$20.99</v-list-item-action>
       </v-list-item>
-    </v-list>
+    </v-list> -->
     <v-toolbar color="rgba(0,0,0,0)" flat>
-      <strong>Subtotal</strong><v-spacer></v-spacer><strong>$37.97</strong>
+      <strong>Subtotal</strong><v-spacer></v-spacer><strong>$</strong>
     </v-toolbar>
     <v-toolbar color="rgba(0,0,0,0)" flat class="mt-n6">
-      <span>Tax(10%)</span><v-spacer></v-spacer><span>$1.80</span>
+      <span>Tax(10%)</span><v-spacer></v-spacer><span>$</span>
     </v-toolbar>
     <v-divider class="mx-4"></v-divider>
     <v-toolbar color="rgba(0,0,0,0)" flat>
@@ -126,22 +126,22 @@
 </template>
 
 <script>
-// import Store from '../../store'
+
+// import { CartItem } from "../components/CartItem.vue";
 
 export default {
   name: "SideBarRight",
+
+  components: {},
   data () {
     return {
 
     }
   },
-  methods: {
-      cart_total() {
-        // return Store.getters.cartTotal
-      },
-  },
+ 
   props: {
-    cart: [],
+    item: Object,
+   
   },
 
 }

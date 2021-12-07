@@ -15,6 +15,23 @@
         <div class="account-form-wrapper">
           <component :is="compsArr[isActive]" :data="compsData[isActive]" @click="processEvent"></component>
         </div>
+        
+        <v-container fluid>
+          <p>{{ radios || 'null' }}</p>
+        <v-radio-group
+          v-model="radios"
+          mandatory>
+        <v-radio
+          label="Customer"
+          value="radio-1">
+        </v-radio>
+        <v-radio
+          label="Admin"
+          value="radio-2">
+        </v-radio>
+          </v-radio-group>
+        </v-container>
+
       </div>
     </div>
   </div>
