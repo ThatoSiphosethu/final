@@ -2,7 +2,10 @@
 <div>
   <h1>Menu View</h1>
   
-  <menu-comp @add-product="addProduct" :shopping-cart="shoppingCart" ></menu-comp>
+  <menu-comp 
+    @add-product="addProduct" 
+    :shopping-cart="shoppingCart" >
+  </menu-comp>
 </div>
 </template>
 

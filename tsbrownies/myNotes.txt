@@ -1,0 +1,10 @@
+App - compile <global function, array >
+ -> router-views - contains views (pages)
+    -> views (example: Cart) - display component data
+        -> parent component (example: Drinks) - loop items
+            -> child component (example: cartItem or (SideBarRight )) - styling and functions
+
+To bind data or pass data  the first thing to do is create the props 
+then add bind again if necessary.
+
+

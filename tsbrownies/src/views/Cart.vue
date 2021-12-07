@@ -1,22 +1,29 @@
 <template>
   <div>
-      <cart-item
-			:shoppingCart="shoppingCart"				
-		></cart-item>
+      <cart-items
+			:shoppingCart="shoppingCart"
+			:delete-product-method="deleteProductMethod"				
+		></cart-items>
   </div>
 </template>
 
 <script>
-import CartItem from '../components/CartItem.vue'
+import CartItems from '../components/CartItems.vue'
 
 export default {
     name: 'Cart',
-	components: {  CartItem},
+	components: {  CartItems},
     
 	props: {
 		shoppingCart: Array,
-		addProductMethod: Function,
+		// deleteProduct: Function,
 	},
+
+	methods: {
+		deleteProduct: function(){
+       this.$emit('delete-product', this.item)
+     },
+	}
 }
 </script>
 

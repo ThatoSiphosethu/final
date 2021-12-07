@@ -3,7 +3,7 @@
     <!-- <img :src="item.image"/> -->
     <!-- <menu-item :item="item" v-for="item in cookies" :key="item.id"></menu-item> -->
     <MenuItem />
-    <brownies  
+    <Brownies  
       :item="item" 
       v-for="item in items" 
       :key="item.id" 
@@ -11,7 +11,7 @@
       @add-product="addProduct"
       
       />
-    <drinks
+    <Drinks
   
       v-for="item in coffee" 
       :key="item.id" 
@@ -28,23 +28,23 @@
 </template>
 
 <script>
-import {db} from '../firebase/firebase.js'
-import MenuItem from "./MenuItem";
-import Drinks from './Drinks.vue';
-import Brownies from './Brownies.vue';
+//import {db} from '../firebase/firebase.js'
+import MenuItem from "../components/MenuItem.vue";
+import Drinks from "../components/Drinks.vue";
+import Brownies from "../components/Brownies.vue";
 
 
 
 
 export default {
   name: "Menu",
-  components: { MenuItem,  Brownies, Drinks },
+  components: {Brownies, MenuItem, Drinks},
 data() {
         return {
         items: [
-        {id: 3, name : 'Mix Brownies ', qty: 6 , price: 9.99, },
-        {id: 4, name : 'Chocolate Brownies ',qty: 6 , price: 9.99 },
-        {id: 5, name : 'Vanilla Brownies ',qty: 6 , price: 9.99 },
+        {id: 3, name : 'Mix Brownies ', qty: 1 , price: 9.99, },
+        {id: 4, name : 'Chocolate Brownies ',qty: 1 , price: 9.99 },
+        {id: 5, name : 'Vanilla Brownies ',qty: 1 , price: 9.99 },
         ],
 
       coffee: [
@@ -66,10 +66,10 @@ data() {
     },
  
 
-  firestore: {
-    //cookies: db.collection('cookiebox1'),
-    drinks: db.collection('drinks')
-  },
+  // firestore: {
+  //   //cookies: db.collection('cookiebox1'),
+  //   drinks: db.collection('drinks')
+  // },
 }
 
 

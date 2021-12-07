@@ -1,62 +1,61 @@
 <template>
   <div id="app">
-
       <v-app :style="{background: $vuetify.theme.themes.dark.background}">
         <SideBar :auth-user="authUser"/>
-        <v-container>
-          <v-main>
-          <router-view :auth-user="authUser" @add-product="addProduct" :shopping-cart="shoppingCart"/>
-    </v-main>
-        </v-container>
-        
+          <v-container>
+            <v-main>
+                <router-view 
+                :auth-user="authUser"
+                @add-product="addProduct" 
+                @delete-product="deleteProduct"
+                :shopping-cart="shoppingCart"
+                />
+            </v-main>
+        </v-container>  
       </v-app>
-
-
-
   </div>
 </template>
 
 <script>
-
-// import {useRouter} from 'vue-router';
-// import firebase from "firebase";
 import SideBar from "./components/SideBar";
-
-
 // import { auth } from './firebase/firebase'
-
 
 export default {
   name: 'App',
-
   data(){
     return {
       authUser : {},
-      
       shoppingCart: [] // this will contain all the item from the store
     }
   },
+
+  //methods = functions, this is available everywhere becuase is at the app level
+   methods: {
+     
+    addProduct(item){
+      this.shoppingCart.push(item)
+    },
+
+    //global function, this can be use in all the app components
+    deleteProduct(item) {
+			this.shoppingCart.splice(this.shoppingCart.indexOf(item), 1)
+		},
+  },
   
+  //local storage
    mounted: function () {
-		if (localStorage.getItem('cartList')) {
-			this.cartList = JSON.parse(localStorage.getItem('cartList'))
+		if (localStorage.getItem('shoppingCart')) {
+			this.shoppingCart = JSON.parse(localStorage.getItem('shoppingCart'))
 		}
 	},
 	watch: {
-		cartList: {
+		shoppingCart: {
 			handler(newList) {
-				localStorage.setItem('cartList', JSON.stringify(newList))
+				localStorage.setItem('shoppingCart', JSON.stringify(newList))
 			},
 			deep: true,
 		},
 	},
-
-  methods: {
-    addProduct(item){
-      this.shoppingCart.push(item)
-    }
-  },
-
 
   components: {
     SideBar,

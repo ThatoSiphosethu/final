@@ -1,26 +1,60 @@
 <template>
-  <v-container>
-		<h1>Checkout</h1>
-		<v-list>
-			<side-bar-right
-				:item="item"
-				v-for="item in shoppingCart"
-				:key="item.name"
-				
-			></side-bar-right>
-		</v-list>
-	</v-container>
+  <div>
+      <v-list-item>
+      <v-list-item-content>    
+      <p>{{item.name}}</p>
+      <p>{{item.price}}</p>
+      </v-list-item-content>
+      <v-list-item-action class="mx-2">
+                    {{item.qty}}
+				</v-list-item-action>
+      <v-list-item-action>
+					<v-btn
+						
+						color="primary"
+						@click="increaseQuantity"
+						><v-icon>mdi-plus</v-icon></v-btn
+					>
+				</v-list-item-action> 
+       <v-list-item-action>
+					<v-btn
+					
+						color="red darken-2"
+						@click="decreaseQuantity"
+						>
+						<v-icon>mdi-minus</v-icon></v-btn
+					>
+				</v-list-item-action>         
+
+      <v-list-item-action>
+          
+      <v-icon color="red darken-3" class="mx-2" fab small 
+      @click.prevent="deleteItem">
+						mdi-delete
+		</v-icon>
+
+      </v-list-item-action>              
+      </v-list-item>              
+  </div>
 </template>
 
 <script>
-import SideBarRight from './SideBarRight.vue'
-// import SideBarRight from '../components/SideBarRight.vue'
 export default {
-    name: 'CartItem',
-    components: {SideBarRight  },
-
     props: {
-       shoppingCart: Array, 
+        item: Object
+    }, 
+    methods: {
+         deleteItem() {
+			this.removeProductMethod(this.item)
+		},
+
+        increaseQuantity() {
+			this.item.qty += 1
+		},
+
+        decreaseQuantity() {
+			this.item.qty -= 1
+		},
     }
 }
 </script>
