@@ -13,13 +13,10 @@
       
       />
     <Drinks
-  
+      :item="item"
       v-for="item in coffee" 
       :key="item.id" 
-      :name="item.name"
-      :price="item.price"
-      :type="item.type"
-      :size="item.size"
+    
       @add-product="addProduct"
      />
 

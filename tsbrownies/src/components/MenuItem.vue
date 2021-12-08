@@ -92,7 +92,7 @@
 <!--    Menu choice results-->
 
     <v-toolbar color="#EEEEEE" flat>
-      <v-toolbar-title>Menu</v-toolbar-title>
+      <v-toolbar-title>All Products</v-toolbar-title>
       <v-spacer></v-spacer>
       <span color="grey"></span>
     </v-toolbar>

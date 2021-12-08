@@ -29,7 +29,7 @@
       <v-list-item-action>
           
       <v-icon color="red darken-3" class="mx-2" fab small 
-      @click.prevent="deleteItem">
+      @click.prevent="deleteProduct">
 						mdi-delete
 		</v-icon>
 
@@ -44,8 +44,8 @@ export default {
         item: Object
     }, 
     methods: {
-         deleteItem() {
-			this.removeProductMethod(this.item)
+         deleteProduct() {
+			this.$emit('delete-product',this.item)
 		},
 
         increaseQuantity() {
@@ -53,7 +53,7 @@ export default {
 		},
 
         decreaseQuantity() {
-			this.item.qty -= 1
+			if (this.item.qty > 0) this.item.qty -= 1
 		},
     }
 }

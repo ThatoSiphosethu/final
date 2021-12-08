@@ -11,7 +11,7 @@
 
 			<v-card-title>{{ item.name }}</v-card-title>
 			<v-card-subtitle>{{ item.temp }}</v-card-subtitle>
-			<strong class="mt-3" >Price: ${{item.itemPrice}}</strong>
+			<strong class="mt-3" >Price: ${{itemPrice.toFixed(2)}}</strong>
 			<!-- <v-card-text>{{ item.price }}</v-card-text> -->
 			<v-card-text>{{ item.qty }}</v-card-text>
             <strong class="ml-3">{{item.type}}</strong><br>
@@ -133,7 +133,7 @@ export default {
 
 	data() {
 		return {
-            itemPrice: this.price,
+            itemPrice: this.item.price,
         }
 	},
 	props: {
@@ -148,13 +148,13 @@ export default {
 			this.$emit('add-product', this.item)
 		},
         small() {
-      this.itemPrice = this.price ;
+      this.itemPrice = this.item.price ;
     },
     medium() {
-      this.itemPrice = this.price + 2;
+      this.itemPrice = this.item.price + 2;
     },
     large() {
-      this.itemPrice = this.price + 4;
+      this.itemPrice = this.item.price + 4;
     },
     cold() {
       this.itemPrice  += 1.50;

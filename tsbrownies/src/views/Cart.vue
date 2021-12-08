@@ -2,7 +2,7 @@
   <div>
       <cart-items
 			:shoppingCart="shoppingCart"
-			:delete-product-method="deleteProductMethod"				
+			@delete-product="deleteProduct"				
 		></cart-items>
   </div>
 </template>

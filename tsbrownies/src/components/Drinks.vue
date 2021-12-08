@@ -16,7 +16,7 @@
             </v-list-item-title>
             <!-- <v-list-item-subtitle class="mt-1">{{item.name}}</v-list-item-subtitle> -->
             <!-- <strong class="mt-3">{{price}}</strong> -->
-            <strong class="mt-3" >Price: ${{item.itemPrice}}</strong>
+            <strong class="mt-3" >Price: ${{itemPrice.toFixed(2)}}</strong>
             <v-btn class="btn" @click="addProduct">Add to cart</v-btn>
           </v-list-item-content>
           <v-card-actions>
@@ -149,7 +149,7 @@ export default {
   },
   data() {
     return {
-      itemPrice: this.price,
+      itemPrice: this.item.price,
        
     }
   },
@@ -158,13 +158,13 @@ export default {
        this.$emit('add-product', this.item)
      },
     small() {
-      this.itemPrice = this.price ;
+      this.itemPrice = this.item.price ;
     },
     medium() {
-      this.itemPrice = this.price + 2;
+      this.itemPrice = this.item.price + 2;
     },
     large() {
-      this.itemPrice = this.price + 4;
+      this.itemPrice = this.item.price + 4;
     },
     cold() {
       this.itemPrice  += 1.50;
