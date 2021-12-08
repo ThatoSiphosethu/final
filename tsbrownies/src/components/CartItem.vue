@@ -53,7 +53,7 @@ export default {
 		},
 
         decreaseQuantity() {
-			if (this.item.qty > 0) this.item.qty -= 1
+			if (this.item.qty > 1) this.item.qty -= 1
 		},
     }
 }
