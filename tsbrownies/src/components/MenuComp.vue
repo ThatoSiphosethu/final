@@ -24,7 +24,7 @@
 				:item="item"
 				v-for="item in drinks"
 				:key="item.id"
-				:shopping-cart="shoppingCart"
+				
 				@add-product="addProduct"
 				elevation="2"
 			>
