@@ -12,7 +12,7 @@
               <v-list-item-title class="text-h5">{{item.name}}</v-list-item-title>
               <v-list-item-subtitle class="mt-1">{{item.flavor}}</v-list-item-subtitle>
               <strong class="mt-3"></strong>
-              <strong class="mt-3" >Price: ${{itemPrice.toFixed(2)}}</strong>
+              <strong class="mt-3" >Price: ${{itemPrice}}</strong>
               <v-btn class="btn" @click="addProduct">Add to cart</v-btn>
             </v-list-item-content>
           </v-list-item>
@@ -20,7 +20,7 @@
             <v-row>
               <v-col cols="12" sm="6" class="mt-1">
                 <strong class="ml-3">Topping</strong><br>
-                <v-btn-group name='thing' mandatory class="mt-n1">
+                <v-item-group name='thing' mandatory class="mt-n1">
                   <v-row>
                     <v-col cols="12" md="4">
                       <v-btn fab small @click="toppings">
@@ -41,7 +41,7 @@
                       </v-btn>
                     </v-col>
                   </v-row>
-                </v-btn-group>
+                </v-item-group>
               </v-col>
               <v-col cols="12" sm="6" class="mt-1">
               </v-col>
@@ -95,7 +95,7 @@ export default {
     
   data() {
     return {
-      itemPrice: null,
+      itemPrice: this.price,
        }
   },
   methods: {

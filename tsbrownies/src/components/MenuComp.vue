@@ -10,6 +10,7 @@
       :price="item.price"
       @add-product="addProduct"
       
+      
       />
     <Drinks
   
@@ -22,25 +23,39 @@
       @add-product="addProduct"
      />
 
+    <firebase-item
+				:item="item"
+				v-for="item in drinks"
+				:key="item.id"
+				:shopping-cart="shoppingCart"
+				@add-product="addProduct"
+				elevation="2"
+			>
+			</firebase-item>
+
 
 
   </div>
 </template>
 
 <script>
-//import {db} from '../firebase/firebase.js'
+import {db} from '../firebase/firebase.js'
 import MenuItem from "../components/MenuItem.vue";
 import Drinks from "../components/Drinks.vue";
 import Brownies from "../components/Brownies.vue";
+import firebaseItem from "../components/firebaseItem.vue"
+
 
 
 
 
 export default {
   name: "Menu",
-  components: {Brownies, MenuItem, Drinks},
+  components: {Brownies, MenuItem, Drinks, firebaseItem},
 data() {
         return {
+        drinks: [],  
+          
         items: [
         {id: 3, name : 'Mix Brownies ', qty: 1 , price: 9.99, },
         {id: 4, name : 'Chocolate Brownies ',qty: 1 , price: 9.99 },
@@ -66,10 +81,10 @@ data() {
     },
  
 
-  // firestore: {
-  //   //cookies: db.collection('cookiebox1'),
-  //   drinks: db.collection('drinks')
-  // },
+  firestore: {
+    //cookies: db.collection('cookiebox1'),
+    drinks: db.collection('drinks')
+  },
 }
 
 

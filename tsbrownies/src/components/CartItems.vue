@@ -46,8 +46,13 @@ export default {
     name: 'CartItems',
     components: {CartItem  },
 
+    data(){
+      // cartPrice = null;
+    },
+
     props: {
        shoppingCart: Array,
+       
     },
 
 	methods: {
@@ -56,10 +61,10 @@ export default {
 			this.$emit('remove-product-method', this.item)
 		},
 		subtotal() {
-
+      // this.cartPrice = this.item.price;
 		},
 		tax() {
-      // return this.cartPrice = this.subTotal * 0.10;
+      // this.cartPrice = this.subTotal * 0.10;
     },
 
     total() {
