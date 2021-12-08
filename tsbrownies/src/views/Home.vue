@@ -1,6 +1,6 @@
 <template>
 <div>
-  <h1>Welcome to TS' BROWNIES</h1>
+  <h1>Welcome to TS' Brownies and Coffee Shop</h1>
   <router-link to="/Home"></router-link>
   <v-spacer></v-spacer>
   <v-carousel hide-delimiters>
