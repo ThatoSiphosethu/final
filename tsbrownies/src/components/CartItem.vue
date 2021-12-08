@@ -29,7 +29,7 @@
       <v-list-item-action>
           
       <v-icon color="red darken-3" class="mx-2" fab small 
-      @click.prevent="deleteProduct">
+      @click="deleteProduct">
 						mdi-delete
 		</v-icon>
 

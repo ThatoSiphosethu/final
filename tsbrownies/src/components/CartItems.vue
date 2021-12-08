@@ -10,7 +10,7 @@
 				:item="item"
 				v-for="item in shoppingCart"
 				:key="item.name"
-				@remove-product-method="removeProductMethod"
+				@delete-product="deleteProduct"
 			></cart-item>
 			<v-divider></v-divider>
 			<p>Subtotal </p>
@@ -57,8 +57,8 @@ export default {
 
 	methods: {
 		
-		removeProductMethod() {
-			this.$emit('remove-product-method', this.item)
+		deleteProduct(item) {
+			this.$emit('delete-product', item)
 		},
 		subtotal() {
       // this.cartPrice = this.item.price;
@@ -70,6 +70,10 @@ export default {
     total() {
 
 		},
+
+    checkout() {
+
+    }
 	}
 }
 </script>

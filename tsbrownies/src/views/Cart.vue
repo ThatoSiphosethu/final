@@ -20,8 +20,8 @@ export default {
 	},
 
 	methods: {
-		deleteProduct: function(){
-       this.$emit('delete-product', this.item)
+		deleteProduct: function(item){
+       this.$emit('delete-product', item)
      },
 	}
 }

@@ -100,7 +100,7 @@ export default {
   },
   methods: {
      addProduct: function(){
-       this.$emit('add-product', this.item)
+       this.$emit('add-product', this.item,this.itemPrice)
      },
     small() {
       this.itemPrice = this.item.price ;
